@@ -1,0 +1,210 @@
+/* =====================================================
+   Now Batting — Design Tokens v1.0
+   Light hybrid, outdoor-first system.
+
+   Rules that live in these tokens:
+   - Neon on white for reading content: NO. Moments only.
+   - Daylight accent for outdoor primary buttons: YES.
+   - Body text below 16px: NO. Readability over density.
+   - State communicated by color alone: NO. Pair with weight or shape.
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---------- Color ---------- */
+  --nb-color-bg: #F6F4EF;
+  --nb-color-surface: #FFFFFF;
+  --nb-color-divider: rgba(0, 0, 0, 0.06);
+  --nb-color-divider-strong: rgba(0, 0, 0, 0.13);
+
+  --nb-text-primary: #1F1F1F;
+  --nb-text-secondary: #4A4A4A;
+  --nb-text-muted: #7A7A7A;
+
+  --nb-accent-neon: #DFFF00;
+  --nb-accent-daylight: #B8CC00;
+  --nb-color-dark: #1F1F1F;
+
+  /* ---------- Type ---------- */
+  --nb-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --nb-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --nb-size-h1: 32px;
+  --nb-size-h2: 22px;
+  --nb-size-body: 16px;
+  --nb-size-small: 14px;
+  --nb-size-mono: 11px;
+
+  --nb-weight-regular: 400;
+  --nb-weight-medium: 500;
+  --nb-weight-semibold: 600;
+  --nb-weight-bold: 700;
+  --nb-weight-black: 800;
+
+  --nb-track-tight: -0.02em;
+  --nb-track-display: -0.035em;
+  --nb-track-wide: 0.18em;
+
+  /* ---------- Radius ---------- */
+  --nb-radius-sm: 8px;
+  --nb-radius-md: 12px;
+  --nb-radius-lg: 16px;
+
+  /* ---------- Spacing (8pt grid) ---------- */
+  --nb-space-1: 4px;
+  --nb-space-2: 8px;
+  --nb-space-3: 12px;
+  --nb-space-4: 16px;
+  --nb-space-5: 20px;
+  --nb-space-6: 24px;
+  --nb-space-8: 32px;
+  --nb-space-10: 40px;
+  --nb-space-12: 48px;
+  --nb-space-16: 64px;
+
+  /* ---------- Components ---------- */
+  --nb-btn-height: 52px;
+  --nb-btn-radius: 12px;
+  --nb-card-radius: 16px;
+  --nb-progress-height: 5px;
+  --nb-tap-min: 44px;
+
+  /* ---------- Motion ---------- */
+  --nb-duration-fast: 150ms;
+  --nb-duration-base: 200ms;
+  --nb-duration-slow: 250ms;
+  --nb-tap-scale: 0.98;
+}
+
+/* =====================================================
+   Utility primitives — drop-in classes
+   ===================================================== */
+
+.nb-eyebrow {
+  font-family: var(--nb-font-mono);
+  font-size: var(--nb-size-mono);
+  font-weight: var(--nb-weight-medium);
+  letter-spacing: var(--nb-track-wide);
+  text-transform: uppercase;
+  color: var(--nb-text-muted);
+}
+
+.nb-h1 {
+  font-family: var(--nb-font-sans);
+  font-size: var(--nb-size-h1);
+  font-weight: var(--nb-weight-black);
+  letter-spacing: var(--nb-track-tight);
+  line-height: 1;
+  color: var(--nb-text-primary);
+}
+
+.nb-h2 {
+  font-family: var(--nb-font-sans);
+  font-size: var(--nb-size-h2);
+  font-weight: var(--nb-weight-bold);
+  letter-spacing: -0.015em;
+  color: var(--nb-text-primary);
+}
+
+.nb-body {
+  font-family: var(--nb-font-sans);
+  font-size: var(--nb-size-body);
+  font-weight: var(--nb-weight-regular);
+  line-height: 1.55;
+  color: var(--nb-text-secondary);
+}
+
+.nb-btn-primary {
+  background: var(--nb-accent-daylight);
+  color: var(--nb-text-primary);
+  border: 0;
+  border-radius: var(--nb-btn-radius);
+  height: var(--nb-btn-height);
+  padding: 0 24px;
+  font-family: var(--nb-font-sans);
+  font-weight: var(--nb-weight-bold);
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform var(--nb-duration-base) ease;
+  min-height: var(--nb-tap-min);
+}
+.nb-btn-primary:active { transform: scale(var(--nb-tap-scale)); }
+
+.nb-btn-secondary {
+  background: var(--nb-color-surface);
+  color: var(--nb-text-primary);
+  border: 1px solid var(--nb-color-divider-strong);
+  border-radius: var(--nb-btn-radius);
+  height: var(--nb-btn-height);
+  padding: 0 22px;
+  font-family: var(--nb-font-sans);
+  font-weight: var(--nb-weight-semibold);
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform var(--nb-duration-base) ease;
+  min-height: var(--nb-tap-min);
+}
+.nb-btn-secondary:active { transform: scale(var(--nb-tap-scale)); }
+
+.nb-card {
+  background: var(--nb-color-surface);
+  border: 1px solid var(--nb-color-divider);
+  border-radius: var(--nb-card-radius);
+  padding: var(--nb-space-6);
+}
+
+.nb-progress {
+  width: 100%;
+  height: var(--nb-progress-height);
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.nb-progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--nb-accent-neon);
+  border-radius: 3px;
+}
+
+.nb-active-row {
+  position: relative;
+  background: var(--nb-color-surface);
+  border: 1px solid var(--nb-color-divider);
+  border-radius: var(--nb-radius-md);
+  padding: 14px 18px 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nb-active-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 0 3px 3px 0;
+  background: var(--nb-accent-neon);
+  box-shadow: 0 0 10px rgba(223, 255, 0, 0.5);
+}
+
+.nb-play-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--nb-color-dark);
+  color: var(--nb-accent-neon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
