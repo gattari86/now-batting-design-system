@@ -160,9 +160,24 @@
     display:block;overflow:hidden;
   }
   .wordmark .lime{color:var(--neon)}
-  .wordmark span{display:inline-block;opacity:0;transform:translateY(110%);transition:transform 800ms cubic-bezier(.2,.7,.3,1), opacity 800ms}
+  .wordmark span{display:inline-block;opacity:0;transform:translateY(110%);transition:transform 800ms cubic-bezier(.2,.7,.3,1), opacity 800ms;will-change:transform,opacity}
   .wordmark.revealed span{opacity:1;transform:translateY(0)}
-  .wordmark .l-2{transition-delay:80ms}
+  .wordmark .l-2{
+    transition-delay:80ms;
+    background:linear-gradient(100deg, #DFFF00 0%, #DFFF00 38%, #FFFFFF 48%, #F5FFCC 55%, #DFFF00 65%, #DFFF00 100%);
+    background-size:260% 100%;
+    background-position:120% 0;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+  }
+  .wordmark.revealed .l-2{animation:batShimmer 9s ease-in-out 1400ms infinite}
+  @keyframes batShimmer{
+    0%,6%{background-position:120% 0}
+    22%{background-position:-40% 0}
+    100%{background-position:-40% 0}
+  }
   .hero-kicker{
     margin-top:28px;font-size:clamp(20px,3.2vw,32px);font-weight:500;letter-spacing:-0.02em;
     line-height:1.2;color:rgba(246,244,239,0.94);max-width:760px;
@@ -707,6 +722,7 @@
     .np-wave span{transform:scaleY(.7)}
     .np-prog-fill{box-shadow:none}
     .zap-draw svg path{stroke-dashoffset:0}
+    .wordmark.revealed .l-2{animation:none;background-position:-40% 0}
   }
 
   /* Focus visible */
@@ -1392,6 +1408,29 @@
       document.getElementById('wordmark').classList.add('revealed');
     });
   });
+
+  // ============ MAGNETIC HERO CTAs (desktop only) ============
+  (() => {
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduced) return;
+    const btns = document.querySelectorAll('.hero-cta-row .btn');
+    btns.forEach(btn => {
+      let raf = 0;
+      const reset = () => { btn.style.transform = ''; };
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          btn.style.transform = `translate(${x * 0.18}px, ${y * 0.24}px)`;
+        });
+      });
+      btn.addEventListener('mouseleave', reset);
+      btn.addEventListener('blur', reset);
+    });
+  })();
 
   // ============ STICKY NAV SHRINK ============
   const nav = document.getElementById('nav');
