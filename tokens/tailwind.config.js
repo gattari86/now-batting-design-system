@@ -21,7 +21,7 @@ module.exports = {
             DEFAULT: '#1F1F1F',
             primary: '#1F1F1F',
             secondary: '#4A4A4A',
-            muted: '#7A7A7A',
+            muted: '#6B6B6B',
           },
           neon: '#DFFF00',
           daylight: '#B8CC00',
