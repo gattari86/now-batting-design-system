@@ -766,17 +766,44 @@
   }
   @keyframes nbSpotlight{to{opacity:1}}
 
-  /* ON DECK microcopy marker on the row after active */
-  .ln-row.next-up{position:relative;padding-top:13px}
-  .ln-row.next-up::before{
-    content:"ON DECK";
-    position:absolute;top:2px;left:10px;
-    font-family:var(--mono);font-size:7px;font-weight:700;
-    letter-spacing:0.22em;color:var(--daylight);line-height:1;
+  /* ON DECK microcopy marker: inline chip, keeps row height in rhythm */
+  .ln-mark{
+    flex:0 0 auto;
+    font-family:var(--mono);font-size:6.5px;font-weight:700;
+    letter-spacing:0.18em;color:var(--daylight);
+    background:rgba(184,204,0,0.14);
+    border:1px solid rgba(184,204,0,0.38);
+    border-radius:3px;
+    padding:2px 4px;line-height:1;
+    text-transform:uppercase;
+    white-space:nowrap;
   }
+  .ln-row.next-up .sg{max-width:60px}
 
   @media (prefers-reduced-motion: reduce){
     .hero-headline::before{animation:none;opacity:1}
+  }
+
+  /* =========== MOBILE POLISH =========== */
+  @media (max-width:520px){
+    /* Keep hero eyebrow on one line: hide the descriptor suffix */
+    .hero-headline .eb-sub{display:none}
+
+    /* H1 demo in scale card fits one line */
+    .d-h1{font-size:28px}
+
+    /* Show all five weights at smaller size so Bold + Black stay visible */
+    .weights-row{grid-template-columns:repeat(5,1fr);gap:1px}
+    .weights-row .w-item:nth-child(n+4){display:flex;flex-direction:column;align-items:center}
+    .w-display{font-size:22px}
+    .w-label{font-size:8.5px;letter-spacing:0.12em;margin-top:6px}
+
+    /* Ease the global film grain on dark mobile sections */
+    body::before{opacity:0.02}
+  }
+  @media (max-width:960px){
+    /* Mobile menu padding matches container horizontal padding */
+    .mobile-menu{padding:100px 20px 32px}
   }
 </style>
 </head>
@@ -830,7 +857,7 @@
     </div>
 
     <div class="hero-headline">
-      <span class="eyebrow light" style="margin-bottom:20px;display:inline-flex">Walk Up Song Generator / Outdoor First</span>
+      <span class="eyebrow light" style="margin-bottom:20px;display:inline-flex">Walk Up Song Generator<span class="eb-sub"> / Outdoor First</span></span>
       <h1 class="wordmark" id="wordmark" aria-label="Now Batting">
         <span class="l-1">NOW</span> <span class="l-2 lime">BATTING</span>
       </h1>
@@ -1340,7 +1367,7 @@
               <div class="ln-row"><span class="num">01</span><span class="nm">T. Chen</span><span class="sg">Lose Yourself</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
               <div class="ln-row"><span class="num">02</span><span class="nm">D. Salazar</span><span class="sg">Enter Sandman</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
               <div class="ln-row active"><span class="num">03</span><span class="nm">J. Ortiz</span><span class="sg">Power</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-              <div class="ln-row next-up"><span class="num">04</span><span class="nm">M. Reeves</span><span class="sg">Thunderstruck</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+              <div class="ln-row next-up"><span class="num">04</span><span class="ln-mark">ON DECK</span><span class="nm">M. Reeves</span><span class="sg">Thunderstruck</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
               <div class="ln-row"><span class="num">05</span><span class="nm">K. Boateng</span><span class="sg">Till I Collapse</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
               <div class="ln-row"><span class="num">06</span><span class="nm">R. Park</span><span class="sg">Jungle</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
               <div class="ln-row"><span class="num">07</span><span class="nm">A. Vega</span><span class="sg">Remember the Name</span><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
