@@ -75,7 +75,20 @@
   --nb-duration-base: 200ms;
   --nb-duration-slow: 250ms;
   --nb-tap-scale: 0.98;
+
+  /* ---------- Nostalgia layer (paper + edge) ----------
+     Applied to card surfaces only. Never to the page canvas.
+     Paper grain reads as lineup-card stock. Edge tokens lift
+     cards off the surface like a pressed card, not a box. */
+  --nb-paper: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='luminanceToAlpha'/></filter><rect width='100%25' height='100%25' filter='url(%23p)' opacity='0.12'/></svg>");
+  --nb-edge-light: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 0 rgba(0,0,0,0.04), 0 6px 18px rgba(0,0,0,0.035);
+  --nb-edge-dark:  inset 0 1px 0 rgba(246,244,239,0.08), 0 1px 0 rgba(0,0,0,0.35);
 }
+
+/* Global: tabular numerals across the system. Stats, times,
+   batting order numbers, scores all snap into column alignment.
+   Scoreboard rhythm, same Inter + JetBrains Mono. */
+html { font-feature-settings: "tnum" 1; }
 
 /* =====================================================
    Utility primitives — drop-in classes
@@ -155,10 +168,23 @@
 .nb-btn-secondary:active { transform: scale(var(--nb-tap-scale)); }
 
 .nb-card {
-  background: var(--nb-color-surface);
+  background-color: var(--nb-color-surface);
+  background-image: var(--nb-paper);
+  background-size: 220px 220px;
+  background-repeat: repeat;
   border: 1px solid var(--nb-color-divider);
   border-radius: var(--nb-card-radius);
   padding: var(--nb-space-6);
+  box-shadow: var(--nb-edge-light);
+}
+
+/* Dark-surface variant of the card: sunlit top edge only, no grain */
+.nb-card.is-dark {
+  background-color: var(--nb-color-dark);
+  background-image: none;
+  color: #F6F4EF;
+  border-color: rgba(246,244,239,0.08);
+  box-shadow: var(--nb-edge-dark);
 }
 
 .nb-progress {
