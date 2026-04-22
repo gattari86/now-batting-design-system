@@ -734,9 +734,9 @@
      cards. Soft stadium-spotlight bloom behind the wordmark.
      No new colors, no new fonts, no layout changes. */
   :root{
-    --nb-paper:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='luminanceToAlpha'/></filter><rect width='100%25' height='100%25' filter='url(%23p)' opacity='0.12'/></svg>");
-    --nb-edge-light:inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 0 rgba(0,0,0,0.04), 0 6px 18px rgba(0,0,0,0.035);
-    --nb-edge-dark:inset 0 1px 0 rgba(246,244,239,0.08), 0 1px 0 rgba(0,0,0,0.35);
+    --nb-paper:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='luminanceToAlpha'/></filter><rect width='100%25' height='100%25' filter='url(%23p)' opacity='0.22'/></svg>");
+    --nb-edge-light:inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 0 rgba(0,0,0,0.06), 0 10px 28px rgba(0,0,0,0.075);
+    --nb-edge-dark:inset 0 1px 0 rgba(246,244,239,0.12), 0 1px 0 rgba(0,0,0,0.45);
   }
   /* Tabular numerals throughout. Scoreboard rhythm, same fonts. */
   html{font-feature-settings:"tnum" 1}
@@ -768,12 +768,12 @@
   .hero-headline{position:relative}
   .hero-headline::before{
     content:"";position:absolute;
-    left:-6%;right:-6%;top:6%;height:74%;
+    left:-10%;right:-10%;top:2%;height:82%;
     pointer-events:none;z-index:-1;
-    background:radial-gradient(55% 75% at 50% 55%, rgba(223,255,0,0.14), transparent 70%);
-    filter:blur(28px);
-    opacity:0;transform:scale(0.9);
-    animation:nbSpotlight 1400ms cubic-bezier(.2,.7,.3,1) 420ms forwards;
+    background:radial-gradient(60% 78% at 50% 52%, rgba(223,255,0,0.28), rgba(223,255,0,0.08) 45%, transparent 72%);
+    filter:blur(36px);
+    opacity:0;transform:scale(0.88);
+    animation:nbSpotlight 1600ms cubic-bezier(.2,.7,.3,1) 480ms forwards;
   }
   @keyframes nbSpotlight{
     from{opacity:0;transform:scale(0.9)}
@@ -1461,7 +1461,7 @@
   // Hold a beat before the announcement. The pause is the nostalgia.
   window.addEventListener('load', () => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const delay = reduced ? 0 : 260;
+    const delay = reduced ? 0 : 480;
     setTimeout(() => {
       document.getElementById('wordmark').classList.add('revealed');
     }, delay);
