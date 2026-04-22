@@ -699,8 +699,8 @@
   .reb-chip.lime{color:var(--daylight);border-color:rgba(184,204,0,0.3);background:rgba(223,255,0,0.08)}
 
   /* Zap draw on Rule 02 */
-  .zap-draw{display:inline-flex;width:18px;height:18px;margin-right:8px;color:var(--daylight);vertical-align:-3px}
-  .zap-draw svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .zap-draw{display:inline-block;width:0.95em;height:0.95em;margin-right:0.35em;color:var(--daylight);vertical-align:-0.14em;line-height:1}
+  .zap-draw svg{display:block;width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
   .zap-draw svg path{stroke-dasharray:62;stroke-dashoffset:62}
   .rules-card.in .zap-draw svg path{animation:zapDraw 800ms cubic-bezier(.2,.7,.3,1) forwards 250ms}
   @keyframes zapDraw{to{stroke-dashoffset:0}}
